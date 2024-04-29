@@ -19,4 +19,7 @@ files:
 feedback_link: https://hyperskill.org/projects/277/stages/1406/implement#comment
 check_profile: hyperskill_node_javascript
 status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Mon, 29 Apr 2024 22:46:38 UTC"
 record: 3

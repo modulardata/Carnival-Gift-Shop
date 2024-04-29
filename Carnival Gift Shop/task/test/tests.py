@@ -33,7 +33,11 @@ class Feedback:
             "The starting total tickets should be 100 in this stage!"
     test6 = "Your program couldn't output the gift list again correctly!" \
             "The gift list should be the same as in the example!"
-
+    test7 = "Your program should end after the user decides to quit!"
+    test8 = "Your program should ask for what to do again, after processing an operation!"
+    test9 = "Your program couldn't output the total tickets correctly!" \
+            "The starting total tickets should be 0 in this stage!"
+    test10 = "Your program should remove the gift from the list after the user buys it!"
 
 class CarnivalGiftShopTest(StageTest):
     welcome_msg = "WELCOME TO THE CARNIVAL GIFT SHOP!"
@@ -49,11 +53,12 @@ class CarnivalGiftShopTest(StageTest):
 8- Toy Car, Cost: 25 tickets
 9- Basketball, Cost: 20 tickets
 10- Scary Mask, Cost: 75 tickets"""
-    do_what_input_msg = "\nWhat do you want to do?\n1-Buy a gift 2-Add tickets 3-Check tickets 4-Show gifts\n"
+    do_what_input_msg = "\nWhat do you want to do?\n1-Buy a gift 2-Add tickets " \
+                        "3-Check tickets 4-Show gifts 5-Exit the shop\n"
     gift_id_input_msg = "Enter the number of the gift you want to get: "
     ticket_amount_input_msg = "Enter the ticket amount: "
     end_msg = "Have a nice day!"
-    tickets = 100
+    tickets = 0
     gift_ids = list(range(1, 11))
     gifts = [
         Gift("Teddy Bear", 10, 1),
@@ -75,10 +80,11 @@ class CarnivalGiftShopTest(StageTest):
         return f"Total tickets: {tickets}"
 
     @classmethod
-    def buy_gift(cls, gift_id):
-        tickets = cls.tickets
+    def buy_gift(cls, gift_id, add_tickets=0):
+        tickets = cls.tickets + add_tickets
         gift = list(filter(lambda item: item.id == gift_id, cls.gifts))[0]
         gift_msg = "Here you go, one " + gift.name + "!"
+        cls.gifts.remove(gift)
         tickets -= gift.price
         tickets_msg = cls.show_tickets(tickets)
         return gift_msg + "\n" + tickets_msg
@@ -89,6 +95,14 @@ class CarnivalGiftShopTest(StageTest):
         tickets += ticket_amount
         tickets_msg = cls.show_tickets(tickets)
         return tickets_msg
+
+    @classmethod
+    def show_gifts(cls):
+        gifts_msg = "Here's the list of gifts:\n\n"
+        for gift in cls.gifts:
+            gifts_msg += f"{gift.id}- {gift.name}, Cost: {gift.price} tickets\n"
+        print(gifts_msg)
+        return gifts_msg
 
     @classmethod
     def reinit_gifts(cls):
@@ -141,8 +155,6 @@ class CarnivalGiftShopTest(StageTest):
             output = main.execute(str(gift_id))
             if self.buy_gift(gift_id).strip() not in output.strip():
                 return CheckResult.wrong(Feedback.test3["buy_gift"])
-            elif self.end_msg.strip() not in output.strip():
-                return CheckResult.wrong(Feedback.missing_ending)
             return CheckResult.correct()
         return CheckResult.wrong(Feedback.test3["waiting_input"])
 
@@ -159,8 +171,6 @@ class CarnivalGiftShopTest(StageTest):
             output = main.execute(str(ticket_amount))
             if self.add_tickets(ticket_amount).strip() not in output.strip():
                 return CheckResult.wrong(Feedback.test4["add_tickets"])
-            elif self.end_msg.strip() not in output.strip():
-                return CheckResult.wrong(Feedback.missing_ending)
             return CheckResult.correct()
         return CheckResult.wrong(Feedback.test4["waiting_input"])
 
@@ -172,8 +182,6 @@ class CarnivalGiftShopTest(StageTest):
         output = main.execute("3")
         if self.show_tickets(self.tickets).strip() not in output.strip():
             return CheckResult.wrong(Feedback.test5)
-        elif self.end_msg.strip() not in output.strip():
-            return CheckResult.wrong(Feedback.missing_ending)
         return CheckResult.correct()
 
     # test if option 4 is working
@@ -184,8 +192,67 @@ class CarnivalGiftShopTest(StageTest):
         output = main.execute("4")
         if self.gift_list.strip() not in output.strip():
             return CheckResult.wrong(Feedback.test6)
-        elif self.end_msg.strip() not in output.strip():
+        return CheckResult.correct()
+
+    # test if option 5 is working
+    @dynamic_test
+    def test7(self):
+        main = TestedProgram(self.source_name)
+        main.start()
+        output = main.execute("5")
+        if self.end_msg.strip() not in output.strip():
             return CheckResult.wrong(Feedback.missing_ending)
+        elif not main.is_finished():
+            return CheckResult.wrong(Feedback.test7)
+        return CheckResult.correct()
+
+    # test if the program runs continuously
+    @dynamic_test
+    def test8(self):
+        main = TestedProgram(self.source_name)
+        main.start()
+        main.execute("2")
+        output = main.execute("100")
+        message = self.do_what_input_msg
+        if message.strip() not in output.strip() or not main.is_waiting_input():
+            return CheckResult.wrong(Feedback.test8)
+        main.execute("1")
+        output = main.execute("6")
+        if message.strip() not in output.strip() or not main.is_waiting_input():
+            return CheckResult.wrong(Feedback.test8)
+        output = main.execute("4")
+        if message.strip() not in output.strip() or not main.is_waiting_input():
+            return CheckResult.wrong(Feedback.test8)
+        output = main.execute("3")
+        if message.strip() not in output.strip() or not main.is_waiting_input():
+            return CheckResult.wrong(Feedback.test8)
+        main.execute("5")
+        return CheckResult.correct()
+
+    # test if starting tickets are zero
+    @dynamic_test
+    def test9(self):
+        main = TestedProgram(self.source_name)
+        main.start()
+        output = main.execute("3")
+        if self.show_tickets(self.tickets).strip() not in output.strip():
+            return CheckResult.wrong(Feedback.test9)
+        return CheckResult.correct()
+
+    # test if the program removes the bought gift
+    @dynamic_test(data=gift_ids)
+    def test10(self, gift_id):
+        main = TestedProgram(self.source_name)
+        main.start()
+        self.reinit_gifts()
+        main.execute("2")
+        main.execute("100")
+        main.execute("1")
+        main.execute(str(gift_id))
+        self.buy_gift(gift_id, 100)
+        output = main.execute("4")
+        if self.show_gifts() not in output.strip():
+            return CheckResult.wrong(Feedback.test10)
         return CheckResult.correct()
 
 

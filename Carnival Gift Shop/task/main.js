@@ -20,7 +20,7 @@ const giftShop = {
     chose: function () {
         console.log('What do you want to do?');
         let question = input(
-            '1-Buy a gift 2-Add tickets 3-Check tickets 4-Show gifts\n'
+            '1-Buy a gift 2-Add tickets 3-Check tickets 4-Show gifts 5-Exit the shop\n'
         );
         switch (question) {
             case '1':
@@ -35,6 +35,9 @@ const giftShop = {
             case '4':
                 giftShop.showGifts();
                 break;
+            case '5':
+                giftShop.out();
+                break;
             default:
                 console.log('Unknown command!');
         } // switch
@@ -42,13 +45,13 @@ const giftShop = {
     buy: function () {
         let question = input('Enter the number of the gift you want to get:');
         for (let i = 0; i < data['gifts_list'].length; i++) {
-
             if (parseInt(question) === parseInt(data['gifts_list'][i].id)) {
                 let total = data['tickets'] - data['gifts_list'][i].price;
                 console.log(
                     `Here you go, one ${data['gifts_list'][i].name}!`
                 );
                 console.log(`Total tickets: ${total + '\n'}Have a nice day!`);
+                data['gifts_list'].splice(i, 1);
                 break;
             }
         }
@@ -56,7 +59,7 @@ const giftShop = {
     addTickets: function () {
         let question = input('Enter the ticket amount: ');
         data['tickets'] += parseInt(question);
-        console.log(`Total tickets: ${data['tickets'] + '\n'}Have a nice day!`);
+        console.log(`Total tickets: ${data['tickets'] + '\n'}Have a nice day!` + '\n');
     },
     checkTickets: function (amount) {
         console.log(`Total tickets: ${amount + '\n'}Have a nice day!`);
@@ -66,12 +69,19 @@ const giftShop = {
         giftShop.showGiftsList();
         console.log('Have a nice day!');
     },
+    out: function () {
+        console.log('Have a nice day!');
+        process.exit(0);
+    }
 };
 
 const __main__ = () => {
-    giftShop.welcomeMessage();
-    giftShop.showGiftsList();
-    giftShop.chose();
+do {
+
+        giftShop.welcomeMessage();
+        giftShop.showGiftsList();
+        giftShop.chose();
+} while (true);
 };
 
 __main__();
