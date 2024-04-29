@@ -12,7 +12,13 @@ files:
   - name: tests.py
     visible: false
     learner_created: false
+  - name: gift_shop_data.json
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/projects/277/stages/1405/implement#comment
 check_profile: hyperskill_node_javascript
 status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Mon, 29 Apr 2024 22:45:56 UTC"
 record: 2
