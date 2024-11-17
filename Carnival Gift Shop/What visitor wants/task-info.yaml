@@ -15,7 +15,7 @@ files:
   - name: gift_shop_data.json
     visible: true
     learner_created: true
-feedback_link: https://hyperskill.org/projects/277/stages/1405/implement#comment
+feedback_link: https://hyperskill.org/learn/step/21706#comment
 check_profile: hyperskill_node_javascript
 status: Solved
 feedback:

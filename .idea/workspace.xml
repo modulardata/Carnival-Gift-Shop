@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c9d9fb65-680d-45f6-be37-71f1f96a759c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.author_contents_storage_db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.author_contents_storage_db-shm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.author_contents_storage_db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.author_contents_storage_db-wal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageData" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageData" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageRecordIndex" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageRecordIndex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/Can you repeat/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/Can you repeat/task-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/Can you repeat/task-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/Can you repeat/task-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/Can you repeat/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/Can you repeat/task.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/Expect the unexpected/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/Expect the unexpected/task-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/Expect the unexpected/task-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/Expect the unexpected/task-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/Expect the unexpected/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/Expect the unexpected/task.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/How much/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/How much/task-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/How much/task-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/How much/task-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/How much/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/How much/task.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/Welcome to the carnival/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/Welcome to the carnival/task-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/Welcome to the carnival/task-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/Welcome to the carnival/task-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/Welcome to the carnival/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/Welcome to the carnival/task.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/What visitor wants/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/What visitor wants/task-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/What visitor wants/task-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/What visitor wants/task-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/What visitor wants/task.html" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/What visitor wants/task.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/lesson-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/lesson-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/task/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/task/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/task/test/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/task/test/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carnival Gift Shop/task/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Carnival Gift Shop/task/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/course-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/course-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Carnival Gift Shop/task/gift_shop_data.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Carnival Gift Shop/task/main.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Carnival Gift Shop/task/test/__init__.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Carnival Gift Shop/task/test/tests.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Carnival Gift Shop/task/tests.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2osn7tJ6pH3zrjS2YYAS4ao4oPD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="sortKey" value="BY_TIME_ASCENDING" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Edu.LearningObjectsStorageType&quot;: &quot;SQLite&quot;,
+    &quot;Edu.Yaml.Migrate&quot;: &quot;true&quot;,
+    &quot;Node.js.main.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\wmiod\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="main.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/Carnival Gift Shop/task/main.js" working-dir="$PROJECT_DIR$/Carnival Gift Shop/task">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.main.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c9d9fb65-680d-45f6-be37-71f1f96a759c" name="Changes" comment="" />
+      <created>1731666987116</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731666987116</updated>
+      <workItem from="1731666988262" duration="3185000" />
+      <workItem from="1731677124224" duration="315000" />
+      <workItem from="1731749077943" duration="3634000" />
+      <workItem from="1731805834240" duration="120000" />
+      <workItem from="1731806311680" duration="213000" />
+      <workItem from="1731836797041" duration="6569000" />
+      <workItem from="1731843432053" duration="528000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

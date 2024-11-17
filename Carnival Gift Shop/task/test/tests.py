@@ -13,20 +13,21 @@ class Feedback:
     waiting_input = 'Your program is not waiting for input '
     check_eg = ' Check the example!'
     missing_ending = 'Your program is missing the correct ending message.' + check_eg
+    unexpected_input = "Your program should handle any unexpected input "
     test1 = "Your output should be like in the example!"
     test2 = {
-        "missing_input": missing_input + 'which the user decides what to do.' + check_eg,
-        "waiting_input": waiting_input + 'which the user decides what to do.',
+        "missing_input": missing_input + 'where the user decides what to do.' + check_eg,
+        "waiting_input": waiting_input + 'where the user decides what to do.',
     }
     test3 = {
-        "missing_input": missing_input + 'which the user enters the gift number.' + check_eg,
-        "waiting_input": waiting_input + 'which the user enters the gift number.',
+        "missing_input": missing_input + 'where the user enters the gift number.' + check_eg,
+        "waiting_input": waiting_input + 'where the user enters the gift number.',
         "buy_gift": "Your program couldn't process all of the gift numbers correctly!"
                     " Make sure you have all of the gifts defined in the gift list!",
     }
     test4 = {
-        "missing_input": missing_input + 'which the user enters the ticket amount.' + check_eg,
-        "waiting_input": waiting_input + 'which the user enters the ticket amount.',
+        "missing_input": missing_input + 'where the user enters the ticket amount.' + check_eg,
+        "waiting_input": waiting_input + 'where the user enters the ticket amount.',
         "add_tickets": "Your program couldn't process all of the ticket amounts correctly!"
     }
     test5 = "Your program couldn't output the total tickets correctly!" \
@@ -38,6 +39,15 @@ class Feedback:
     test9 = "Your program couldn't output the total tickets correctly!" \
             "The starting total tickets should be 0 in this stage!"
     test10 = "Your program should remove the gift from the list after the user buys it!"
+    test11 = unexpected_input + "where the user decides what to do."
+    test12 = {"unexpected_input": unexpected_input + "where the user enters the gift number.",
+              "wrong_gift_id": "Your program should handle wrong gift number where the user enters the gift number.",
+              "insufficient_tickets": "Your program should handle insufficient "
+                                      "tickets where the user enters the gift number.",
+              "no_gift_left": "Your program should handle if there is no gift left where the user buys a gift."}
+    test16 = unexpected_input + "where the user enters the ticket amount."
+    test17 = "Your program should handle if there is no gift left where the wants to see the list of gifts."
+
 
 class CarnivalGiftShopTest(StageTest):
     welcome_msg = "WELCOME TO THE CARNIVAL GIFT SHOP!"
@@ -58,6 +68,7 @@ class CarnivalGiftShopTest(StageTest):
     gift_id_input_msg = "Enter the number of the gift you want to get: "
     ticket_amount_input_msg = "Enter the ticket amount: "
     end_msg = "Have a nice day!"
+    invalid_num_msg = "Please enter a valid number!"
     tickets = 0
     gift_ids = list(range(1, 11))
     gifts = [
@@ -72,37 +83,8 @@ class CarnivalGiftShopTest(StageTest):
         Gift("Basketball", 20, 9),
         Gift("Scary Mask", 75, 10)
     ]
-    ticket_amounts = [100, 50, 1000, 500, 5, 1]
+    ticket_amounts = [100, 50, 1000, 0, 500, 5, 1]
     options = [1, 2, 3, 4]
-
-    @classmethod
-    def show_tickets(cls, tickets):
-        return f"Total tickets: {tickets}"
-
-    @classmethod
-    def buy_gift(cls, gift_id, add_tickets=0):
-        tickets = cls.tickets + add_tickets
-        gift = list(filter(lambda item: item.id == gift_id, cls.gifts))[0]
-        gift_msg = "Here you go, one " + gift.name + "!"
-        cls.gifts.remove(gift)
-        tickets -= gift.price
-        tickets_msg = cls.show_tickets(tickets)
-        return gift_msg + "\n" + tickets_msg
-
-    @classmethod
-    def add_tickets(cls, ticket_amount):
-        tickets = cls.tickets
-        tickets += ticket_amount
-        tickets_msg = cls.show_tickets(tickets)
-        return tickets_msg
-
-    @classmethod
-    def show_gifts(cls):
-        gifts_msg = "Here's the list of gifts:\n\n"
-        for gift in cls.gifts:
-            gifts_msg += f"{gift.id}- {gift.name}, Cost: {gift.price} tickets\n"
-        print(gifts_msg)
-        return gifts_msg
 
     @classmethod
     def reinit_gifts(cls):
@@ -118,6 +100,54 @@ class CarnivalGiftShopTest(StageTest):
             Gift("Basketball", 20, 9),
             Gift("Scary Mask", 75, 10)
         ]
+
+    @classmethod
+    def show_tickets(cls, tickets):
+        return f"Total tickets: {tickets}"
+
+    @classmethod
+    def buy_gift(cls, gift_id, add_tickets=0):
+        if len(cls.gifts) < 1:
+            return "Wow! There are no gifts to buy."
+        try:
+            gift_id = int(gift_id)
+        except ValueError:
+            return "Please enter a valid number!"
+
+        tickets = cls.tickets + add_tickets
+        filtered_gifts = list(filter(lambda item: item.id == gift_id, cls.gifts))
+        if len(filtered_gifts) < 1:
+            return "There is no gift with that number!"
+        gift = filtered_gifts[0]
+        if tickets < gift.price:
+            return "You don't have enough tickets to buy this gift."
+        gift_msg = "Here you go, one " + gift.name + "!"
+        cls.gifts.remove(gift)
+        tickets -= gift.price
+        tickets_msg = cls.show_tickets(tickets)
+        return gift_msg + "\n" + tickets_msg
+
+    @classmethod
+    def add_tickets(cls, ticket_amount):
+        tickets = cls.tickets
+        message = "Please enter a valid number between 0 and 1000."
+        try:
+            ticket_amount = int(ticket_amount)
+            if ticket_amount < 0 or ticket_amount > 1000:
+                return message
+            tickets += ticket_amount
+            tickets_msg = cls.show_tickets(tickets)
+            return tickets_msg
+        except ValueError:
+            return message
+
+
+    @classmethod
+    def show_gifts(cls):
+        gifts_msg = "Here's the list of gifts:\n\n"
+        for gift in cls.gifts:
+            gifts_msg += f"{gift.id}- {gift.name}, Cost: {gift.price} tickets\n"
+        return gifts_msg
 
     # test if the output is correct
     @dynamic_test
@@ -147,13 +177,15 @@ class CarnivalGiftShopTest(StageTest):
         main = TestedProgram(self.source_name)
         main.start()
         self.reinit_gifts()
+        main.execute("2")
+        main.execute("1000")
         message = self.gift_id_input_msg
         output = main.execute("1")
         if message.strip() not in output.strip():
             return CheckResult.wrong(Feedback.test3["missing_input"])
         if main.is_waiting_input():
             output = main.execute(str(gift_id))
-            if self.buy_gift(gift_id).strip() not in output.strip():
+            if self.buy_gift(gift_id, 1000).strip() not in output.strip():
                 return CheckResult.wrong(Feedback.test3["buy_gift"])
             return CheckResult.correct()
         return CheckResult.wrong(Feedback.test3["waiting_input"])
@@ -253,6 +285,178 @@ class CarnivalGiftShopTest(StageTest):
         output = main.execute("4")
         if self.show_gifts() not in output.strip():
             return CheckResult.wrong(Feedback.test10)
+        return CheckResult.correct()
+
+    # test if the program can handle unexpected input in the do what input
+    @dynamic_test(data=["6", "buy"])
+    def test11(self, unexpected_input):
+        main = TestedProgram(self.source_name)
+        main.start()
+        output = main.execute(unexpected_input)
+        if self.invalid_num_msg.strip() not in output.strip():
+            return CheckResult.wrong(Feedback.test11)
+        main.execute("5")
+        return CheckResult.correct()
+
+    # test if the program can handle unexpected input in option 1
+    @dynamic_test(data=["red ball", "a"])
+    def test12(self, unexpected_input):
+        main = TestedProgram(self.source_name)
+        main.start()
+        self.reinit_gifts()
+        main.execute("1")
+        output = main.execute(unexpected_input)
+        if self.buy_gift(unexpected_input).strip() not in output.strip():
+            return CheckResult.wrong(Feedback.test12["unexpected_input"])
+        main.execute("5")
+        return CheckResult.correct()
+
+    # test if the program can handle wrong gift id input in option 1
+    @dynamic_test(data=["15", "30"])
+    def test13(self, unexpected_input):
+        main = TestedProgram(self.source_name)
+        main.start()
+        self.reinit_gifts()
+        main.execute("1")
+        output = main.execute(unexpected_input)
+        if self.buy_gift(unexpected_input).strip() not in output.strip():
+            return CheckResult.wrong(Feedback.test12["wrong_gift_id"])
+        main.execute("5")
+        return CheckResult.correct()
+
+    # test if the program can handle insufficient ticket in option 1
+    @dynamic_test(data=["1", "6"])
+    def test14(self, unexpected_input):
+        main = TestedProgram(self.source_name)
+        main.start()
+        self.reinit_gifts()
+        main.execute("1")
+        output = main.execute(unexpected_input)
+        if self.buy_gift(unexpected_input).strip() not in output.strip():
+            return CheckResult.wrong(Feedback.test12["insufficient_tickets"])
+        main.execute("5")
+        return CheckResult.correct()
+
+    # test if the program can handle no gift left in option 1
+    @dynamic_test()
+    def test15(self):
+        main = TestedProgram(self.source_name)
+        main.start()
+        self.reinit_gifts()
+        main.execute("2")
+        main.execute("1000")
+
+        main.execute("1")
+        main.execute("1")
+        self.buy_gift("1", 1000)
+
+        main.execute("1")
+        main.execute("2")
+        self.buy_gift("2", 1000)
+
+        main.execute("1")
+        main.execute("3")
+        self.buy_gift("3", 1000)
+
+        main.execute("1")
+        main.execute("4")
+        self.buy_gift("4", 1000)
+
+        main.execute("1")
+        main.execute("5")
+        self.buy_gift("5", 1000)
+
+        main.execute("1")
+        main.execute("6")
+        self.buy_gift("6", 1000)
+
+        main.execute("1")
+        main.execute("7")
+        self.buy_gift("7", 1000)
+
+        main.execute("1")
+        main.execute("8")
+        self.buy_gift("8", 1000)
+
+        main.execute("1")
+        main.execute("9")
+        self.buy_gift("9", 1000)
+
+        main.execute("1")
+        main.execute("10")
+        self.buy_gift("10", 1000)
+
+        output = main.execute("1")
+        if self.buy_gift("1").strip() not in output.strip():
+            return CheckResult.wrong(Feedback.test12["no_gift_left"])
+        main.execute("5")
+        return CheckResult.correct()
+
+    # test if the program can handle unexpected input in option 2
+    @dynamic_test(data=["a", "1001"])
+    def test16(self, unexpected_input):
+        main = TestedProgram(self.source_name)
+        main.start()
+        main.execute("2")
+        output = main.execute(unexpected_input)
+        if self.add_tickets(unexpected_input).strip() not in output.strip():
+            return CheckResult.wrong(Feedback.test16)
+        main.execute("5")
+        return CheckResult.correct()
+
+    # test if the program can handle no gift left in option 4
+    @dynamic_test()
+    def test17(self):
+        main = TestedProgram(self.source_name)
+        main.start()
+        self.reinit_gifts()
+        main.execute("2")
+        main.execute("1000")
+
+        main.execute("1")
+        main.execute("1")
+        self.buy_gift("1", 1000)
+
+        main.execute("1")
+        main.execute("2")
+        self.buy_gift("2", 1000)
+
+        main.execute("1")
+        main.execute("3")
+        self.buy_gift("3", 1000)
+
+        main.execute("1")
+        main.execute("4")
+        self.buy_gift("4", 1000)
+
+        main.execute("1")
+        main.execute("5")
+        self.buy_gift("5", 1000)
+
+        main.execute("1")
+        main.execute("6")
+        self.buy_gift("6", 1000)
+
+        main.execute("1")
+        main.execute("7")
+        self.buy_gift("7", 1000)
+
+        main.execute("1")
+        main.execute("8")
+        self.buy_gift("8", 1000)
+
+        main.execute("1")
+        main.execute("9")
+        self.buy_gift("9", 1000)
+
+        main.execute("1")
+        main.execute("10")
+        self.buy_gift("10", 1000)
+
+        output = main.execute("4")
+        if self.show_gifts().strip() not in output.strip():
+            return CheckResult.wrong(Feedback.test17)
+        main.execute("5")
         return CheckResult.correct()
 
 
